@@ -34,7 +34,7 @@ function CancerEntry(props) {
   const cancerOptions = cancersSorted.map((cancer) => <option key={shortid.generate()} value={cancer.value}>{cancer.text}</option>);
 
   return (
-    <div className="row">
+    <div className="cancer-entry">
       <div className="select-holder">
         <select
           name={familyId !== undefined ? `cancerType-${cancerId}-${familyId}` : `cancerType-${cancerId}`}

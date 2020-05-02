@@ -1,0 +1,277 @@
+@import './variables.scss';
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  p {
+    margin-top: 0;
+    line-height: 24px;
+  }
+  span {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    color: blue;
+    cursor: pointer;
+
+    span {
+      text-decoration: underline;
+      margin-left: 0;
+    }
+  }
+  h2 {
+    display: inline-block;
+    margin-top: 0;
+    font-size: 18px;
+  }
+  header {
+    margin-bottom: 35px;
+  }
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 18px;
+    border: 0 none;
+    background: transparent;
+    padding: 15px 25px;
+    cursor: pointer;
+    color: $grey-select;
+    text-align-last: center;
+  }
+  input {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 0 25px;
+    border: 1px solid $grey;
+
+    &#nameInput {
+      margin-bottom: 0;
+    }
+  }
+  input[type=text] {
+    width: 400px !important;
+    height: 50px;
+  }
+  input[type=radio] {
+    cursor: pointer;
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  input[type=submit] {
+    border: 1px solid $grey;
+    padding: 15px 50px;
+    margin-top: 25px;
+    cursor: pointer;
+    background-color: $grey-light;
+  }
+  button {
+    font-size: 18px;
+    border-radius: 25px;
+    border: 1px solid red;
+    cursor: pointer;
+    color: red;
+
+    span {
+     text-decoration: underline;
+     margin-left: 0;
+   }
+
+   &.add-button {
+     border: none;
+     color: initial;
+
+     span {
+       display: inline-block;
+     }
+   }
+  }
+  .block {
+    display: block;
+  }
+  div#root {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    main {
+      padding: 0 25px;
+      div.language {
+        margin-top: 20px;
+
+        button {
+          color: black;
+          border: 1px solid black;
+          padding: 5px 15px;
+
+          &:first-child {
+            margin-right: 10px;
+          }
+          &.selected {
+            background-color: red;
+            color: white;
+          }
+        }
+      }
+      div.select-holder {
+        display: inline-block;
+        border: 1px solid $grey;
+        margin-bottom: 20px;
+        margin-right: 10px;
+      }
+      div.row input {
+        display: inline-block;
+      }
+      div.family {
+        border: 1px solid $grey;
+        margin-bottom: 25px;
+
+        div.familyHeader {
+          background: $grey-light;
+          box-sizing: border-box;
+          padding: 25px;
+          border-bottom: 1px solid $grey;
+          display: flex;
+          justify-content: space-between;
+
+          h2 {
+            margin-bottom: 0;
+          }
+        }
+
+        div.content {
+          padding: 25px;
+        }
+      }
+      div.gender {
+        input {
+          display: inline-block;
+        }
+
+        label {
+          &:last-child {
+            margin-left: 15px;
+          }
+        }
+      }
+
+      div.cancerEntries {
+        h3 {
+          font-size: 14px;
+          display: inline-block;
+          text-decoration: underline;
+          color: $grey-select;
+
+          &.firstHeading {
+            margin-right: 130px;
+          }
+        }
+      }
+      footer {
+        margin-top: 150px;
+        margin-bottom: 50px;
+
+        ul {
+          padding-left: 20px;
+          line-height: 24px;
+        }
+      }
+      div.modal {
+        position:absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+      }
+      p.submission-text {
+        margin-top: 25px;
+        color: red;
+      }
+    } // .main
+
+    &.disabled {
+      input {
+        background: $grey-light;
+      }
+      input[type=radio] {
+        display: none;
+      }
+      select {
+        background: $grey-light;
+      }
+      div.gender {
+        label {
+         margin-bottom: 20px;
+         display: inline-block;
+
+         :before {
+           content: "";
+           width: 14px;
+           height: 15px;
+           background: $grey-light;
+           border: 1px solid $grey;
+           border-radius: 25px;
+           display: inline-block;
+           margin: 3px 10px 0 0;
+         }
+       }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    input {
+      padding: 0 15px;
+      font-size: 14px;
+    }
+    input[type=text] {
+      width: calc(100% - 30px) !important;
+    }
+    select {
+      padding: 15px 15px;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 100px;
+    }
+    span {
+      display: block;
+      margin-left: 0;
+      margin-bottom: 20px;
+
+      span {
+        display: inline-block;
+        margin-bottom: 0px;
+      }
+    }
+    button {
+      &.add-button {
+        display: block;
+        margin-left: 0;
+        padding: 0;
+      }
+    }
+    div.select-holder, select {
+      width: 100%;
+      text-align-last: initial;
+    }
+    div.cancerEntries {
+      h3 {
+        display: none;
+      }
+      button {
+        top: 52px;
+        position: absolute;
+      }
+      div.cancer-entry {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      div.select-holder {
+        width: calc(100% - 30px);
+      }
+    }
+  }
+}

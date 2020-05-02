@@ -16,7 +16,7 @@ function Gender(props) {
     <div className="gender">
       <h2>{ t('h2-gender') }</h2>
 
-      <div className="row" role="radiogroup" aria-required="true">
+      <div role="radiogroup" aria-required="true">
         <label htmlFor={genderMale}>
           <input
             id={genderMale}

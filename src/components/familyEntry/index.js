@@ -74,15 +74,13 @@ function FamilyEntry(props) {
           handleChange={handleChange}
         />
 
-        <div className="row">
-          <CancerEntries
-            addCancerDiagnosis={addCancerDiagnosis}
-            cancers={family[familyId].cancers}
-            familyId={familyId}
-            handleChange={handleChange}
-            removeEntry={removeEntry}
-          />
-        </div>
+        <CancerEntries
+          addCancerDiagnosis={addCancerDiagnosis}
+          cancers={family[familyId].cancers}
+          familyId={familyId}
+          handleChange={handleChange}
+          removeEntry={removeEntry}
+        />
       </div>
     </div>
   );

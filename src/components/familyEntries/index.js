@@ -37,7 +37,7 @@ function FamilyEntries(props) {
       </button>
 
       {allFamilyEntries.length > 0 && (
-      <div className="row">
+      <div>
         {allFamilyEntries}
       </div>
       )}

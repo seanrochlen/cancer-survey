@@ -24,7 +24,7 @@ function CancerEntries(props) {
   });
 
   return (
-    <div className="row">
+    <div>
       <h2>{ t('h2-cancer-diagnoses') }</h2>
       <button
         className="add-button"
