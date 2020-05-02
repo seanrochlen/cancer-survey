@@ -1,0 +1,239 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+.modal {
+  position:absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+.submission-text {
+  margin-top: 25px;
+  color: red;
+}
+.disabled input {
+  background: #eeeeee;
+}
+.disabled select {
+  background: #eeeeee;
+}
+.disabled input[type=radio] {
+  display: none;
+}
+.disabled .gender label {
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.disabled .gender label:before {
+  content: "";
+  width: 14px;
+  height: 15px;
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 25px;
+  display: inline-block;
+  margin: 3px 10px 0 0;
+}
+.language {
+  margin-top: 20px;
+}
+.language button {
+  color: black;
+  border: 1px solid #000000;
+  padding: 5px 15px;
+}
+.language button:first-child {
+  margin-right: 10px;
+}
+.language button.selected {
+  background-color: red;
+  color: white;
+}
+p {
+  margin-top: 0;
+  line-height: 24px;
+}
+main {
+  padding: 0 25px;
+}
+#root {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+header {
+  margin-bottom: 35px;
+}
+input {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 18px;
+  padding: 0 25px;
+  border: 1px solid #cccccc;
+}
+input[type=text] {
+  width: 400px !important;
+}
+input[type=radio] {
+  cursor: pointer;
+  margin-left: 0;
+  margin-right: 10px;
+}
+.select-holder {
+  display: inline-block;
+  border: 1px solid #cccccc;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 18px;
+  border: 0 none;
+  background: transparent;
+  padding: 15px 25px;
+  cursor: pointer;
+  color: #757575;
+  text-align-last: center;
+}
+.row input {
+  display: inline-block;
+}
+.name input, #nameInput {
+  width: 50%;
+  height: 50px;
+}
+.family {
+  border: 1px solid #cccccc;
+  margin-bottom: 25px;
+}
+.family .familyHeader {
+  background: #eeeeee;
+  box-sizing: border-box;
+  padding: 25px;
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  justify-content: space-between;
+}
+.family .familyHeader h2 {
+  margin-bottom: 0;
+}
+.family .content {
+  padding: 25px;
+}
+.block {
+  display: block;
+}
+.gender label:last-child {
+  margin-left: 15px;
+}
+h2 {
+  display: inline-block;
+  margin-top: 0;
+  font-size: 18px;
+}
+span {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 14px;
+  color: blue;
+  cursor: pointer;
+}
+button span {
+  text-decoration: underline;
+  margin-left: 0;
+}
+span span {
+  text-decoration: underline;
+  margin-left: 0;
+}
+button.add-button span {
+  display: inline-block;
+}
+button {
+  font-size: 18px;
+  border-radius: 25px;
+  border: 1px solid red;
+  cursor: pointer;
+  color: red;
+}
+button.add-button {
+  border: none;
+  color: initial;
+}
+input[type=submit] {
+  border: 1px solid #cccccc;
+  padding: 15px 50px;
+  margin-top: 25px;
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+footer {
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+footer ul {
+  padding-left: 20px;
+  line-height: 24px;
+}
+.cancerEntries h3 {
+  font-size: 14px;
+  display: inline-block;
+  text-decoration: underline;
+  color: #757575;
+}
+.cancerEntries .firstHeading {
+  margin-right: 130px;
+}
+
+@media (max-width: 767px) {
+  .name input, #nameInput {
+    width: calc(100% - 30px) !important;
+  }
+  .select-holder, select {
+    width: 100%;
+    text-align-last: initial;
+  }
+  footer {
+    margin-top: 100px;
+  }
+  span {
+    display: block;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  button.add-button {
+    display: block;
+    margin-left: 0;
+    padding: 0;
+  }
+  span span {
+    display: inline-block;
+    margin-bottom: 0px;
+  }
+  .cancerEntries h3 {
+    display: none;
+  }
+  .cancerEntries .row {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .cancerEntries .select-holder {
+    width: calc(100% - 30px);
+  }
+  .cancerEntries button {
+    top: 52px;
+    position: absolute;
+  }
+  input {
+    padding: 0 15px;
+    font-size: 14px;
+  }
+  select {
+    padding: 15px 15px;
+    font-size: 14px;
+  }
+}
