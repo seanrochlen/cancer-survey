@@ -15,7 +15,7 @@ import Name from '../name';
 /**
  * Sets up the Single Page Application's Main Form
  */
-class Root extends Component {
+export class Root extends Component {
   constructor(props) {
     super(props);
 
