@@ -39,9 +39,5 @@
       "last 2 firefox version",
       "last 2 safari version"
     ]
-  },
-  "jest": {
-    "rootDir": "__tests__",
-    "verbose": true
   }
 }
