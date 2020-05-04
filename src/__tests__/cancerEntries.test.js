@@ -30,11 +30,11 @@ describe('<CancerEntries>', () => {
   });
   describe('Rendering', () => {
     test('no render of .cancerEntries if no entries in cancers', () => {
-      wrapper.find('.cancerEntries').length = 0;
+      expect(wrapper.find('.cancerEntries').exists()).toBe(false);
     });
     test('render .cancerEntries if entries in cancers', () => {
-      wrapper.props().cancers = ['1'];
-      wrapper.find('.cancerEntries').length = 1;
+      wrapper.setProps({ cancers: [{ id: 123245, cancerType: '', ageOfDiagnosis: '' }] });
+      expect(wrapper.find('.cancerEntries').exists()).toBe(true);
     });
   });
 });
