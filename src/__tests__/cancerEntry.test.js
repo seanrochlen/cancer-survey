@@ -16,42 +16,45 @@ const props = {
 let wrapper;
 
 describe('<CancerEntry>', () => {
+  beforeEach(() => {
+    wrapper = mount(<CancerEntry {...props} />);
+  });
   afterEach(() => {
     wrapper.unmount();
   });
   describe('Events', () => {
     test('Click - Button - removeEntry', () => {
-      wrapper = mount(<CancerEntry {...props} />);
       wrapper.find('button').simulate('click');
       expect(wrapper.props().removeEntry.mock.calls.length).toEqual(1);
+    });
+    test('Change - Select CancerType - handleChange', () => {
+      wrapper.find('select').first().simulate('change', { target: { value : 'breast'} } );
+      expect(wrapper.props().handleChange.mock.calls.length).toEqual(1);
+    });
+    test('Change - Select AgeOfDiagnosis - handleChange', () => {
+      wrapper.find('select').at(1).simulate('change', { target: { value : '1'} } );
+      expect(wrapper.props().handleChange.mock.calls.length).toEqual(2);
     });
   });
   describe('Rendering', () => {
     test('select cancerType name no familyId cancerType-${cancerId}', () => {
-      wrapper = mount(<CancerEntry {...props} />);
       expect(wrapper.find('select').first().props().name).toEqual('cancerType-0');
     });
     test('select cancerType name familyId provided cancerType-${cancerId}-$(familyId)', () => {
-      props.familyId = 1;
-      wrapper = mount(<CancerEntry {...props} />);
+      wrapper.setProps({ familyId: 1 });
       expect(wrapper.find('select').first().props().name).toEqual('cancerType-0-1');
-      props.familyId = undefined;
     });
     test('select cancerType value cancer.cancerType', () => {
-      wrapper = mount(<CancerEntry {...props} />);
       expect(wrapper.find('select').first().props().value).toEqual('brain');
     });
     test('select ageOfDiagnosis name no familyId ageOfDiagnosis-${cancerId}', () => {
-      wrapper = mount(<CancerEntry {...props} />);
       expect(wrapper.find('select').at(1).props().name).toEqual('ageOfDiagnosis-0');
     });
     test('select ageOfDiagnosis name familyId provided ageOfDiagnosis-${cancerId}-$(familyId)', () => {
-      props.familyId = 1;
-      wrapper = mount(<CancerEntry {...props} />);
+      wrapper.setProps({ familyId: 1 });
       expect(wrapper.find('select').at(1).props().name).toEqual('ageOfDiagnosis-0-1');
     });
     test('select ageOfDiagnosis value cancer.ageOfDiagnosis', () => {
-      wrapper = mount(<CancerEntry {...props} />);
       expect(wrapper.find('select').at(1).props().value).toEqual(1);
     });
   });

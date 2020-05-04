@@ -23,10 +23,15 @@ describe('<ChangeLanguage>', () => {
     wrapper.unmount();
   });
   describe('Events', () => {
-    test('Click - Button 1 - useTranslation.i18n.changeLanguage - changes language to en', () => {
-      wrapper.find('button').at(1).simulate('click');
+    test('Click - Button 1 - changes language to en', () => {
       expect(wrapper.find('button').at(0).hasClass('selected')).toEqual(true);
-      expect(useTranslation.mock.results[0].value.i18n.changeLanguage.mock.calls.length).toEqual(1);
+      wrapper.find('button').at(0).simulate('click');
+      expect(useTranslation.mock.results[0].value.i18n.changeLanguage.mock.calls[0][0]).toEqual('en');
+    });
+    test('Click - Button 2 - changes language to es', () => {
+      expect(wrapper.find('button').at(1).hasClass('selected')).toEqual(false);
+      wrapper.find('button').at(1).simulate('click');
+      expect(useTranslation.mock.results[1].value.i18n.changeLanguage.mock.calls[0][0]).toEqual('es');
     });
   });
 });
