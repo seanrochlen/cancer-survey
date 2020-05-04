@@ -12,18 +12,18 @@ function MotherFatherIds(props) {
   // filter by gender and not current family member being displayed
   const familyFilteredByFemales = family.filter((person) => {
     if (familyId !== undefined)
-      return person.gender === 'female' && person.id !== '' && person.id !== family[familyId].id;
-    if (motherId !== null)
+      return person.gender === 'female' && person.id !== family[familyId].id;
+    if (motherId !== '')
       return person.id;
-    return person.gender === 'female' && person.id !== '';
+    return person.gender === 'female';
   });
 
   const familyFilteredByMales = family.filter((person) => {
     if (familyId !== undefined)
-      return person.gender === 'male' && person.id !== '' && person.id !== family[familyId].id;
-    if (fatherId !== null)
+      return person.gender === 'male' && person.id !== family[familyId].id;
+    if (fatherId !== '')
       return person.id;
-    return person.gender === 'male' && person.id !== '';
+    return person.gender === 'male';
   });
 
   // map options for selections of possibly family members

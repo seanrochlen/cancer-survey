@@ -29,8 +29,8 @@ export class Root extends Component {
       gender: '',
       cancers: [],
       family: [],
-      motherId: null,
-      fatherId: null,
+      motherId: '',
+      fatherId: '',
       disabled: false,
     };
   }
@@ -145,6 +145,11 @@ export class Root extends Component {
     const endpoint = '';
     const dateOfBirth = `${birthYear}-${birthMonth.padStart(2, '0')}-${birthDay.padStart(2, '0')}`;
 
+    if (motherId === '')
+      motherId = null;
+    if (fatherId === '')
+      fatherId = null;
+
     // before submission we need to adjust the values of numbers saved and remove the unnecessary ids in cancers
     for (let i = 0; i < cancers.length; i += 1) {
       delete cancers[i].id;
@@ -155,6 +160,11 @@ export class Root extends Component {
       family[i].id = family[i].name;
       delete family[i].name;
       family[i].age = family[i].age.padStart(2, '0');
+
+      if (family[i].motherId === '')
+        motherId = null;
+      if (family[i].fatherId === '')
+        fatherId = null;
 
       for (let j = 0; j < family[i].cancers.length; j += 1) {
         delete family[i].cancers[j].id;
