@@ -25,7 +25,7 @@ describe('<FamilyEntries>', () => {
   describe('Events', () => {
     test('Click - Button - addFamilyMember', () => {
       wrapper.find('button').simulate('click');
-      expect(wrapper.props().addFamilyMember.mock.calls.length).toEqual(1);
+      expect(wrapper.props().addFamilyMember.mock.calls.length).toBe(1);
     });
   });
   describe('Rendering', () => {

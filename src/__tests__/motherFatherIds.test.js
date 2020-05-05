@@ -46,12 +46,12 @@ describe('<MotherFatherIds>', () => {
     test('Change - Select fatherId - handleChange', () => {
       wrapper.setProps(familyOneMale);
       wrapper.find('select').simulate('change', { target: { value : '12345'} } );
-      expect(wrapper.props().handleChange.mock.calls.length).toEqual(1);
+      expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
     test('Change - Select motherId - handleChange', () => {
       wrapper.setProps(familyOneFemale);
       wrapper.find('select').simulate('change', { target: { value : '12345'} } );
-      expect(wrapper.props().handleChange.mock.calls.length).toEqual(2);
+      expect(wrapper.props().handleChange.mock.calls.length).toBe(2);
     });
   });
   describe('Rendering', () => {
@@ -72,21 +72,21 @@ describe('<MotherFatherIds>', () => {
     });
     test('select fatherId name no familyId fatherId', () => {
       wrapper.setProps(familyOneMale);
-      expect(wrapper.find('select').props().name).toEqual('fatherId');
+      expect(wrapper.find('select').props().name).toBe('fatherId');
     });
     test('select fatherId name familyId provided fatherId-$(familyId)', () => {
       wrapper.setProps({ familyId: 1 });
       wrapper.setProps(familyTwoMales);
-      expect(wrapper.find('select').props().name).toEqual('fatherId-1');
+      expect(wrapper.find('select').props().name).toBe('fatherId-1');
     });
     test('select motherId name no familyId motherId', () => {
       wrapper.setProps(familyOneMale);
-      expect(wrapper.find('select').props().name).toEqual('fatherId');
+      expect(wrapper.find('select').props().name).toBe('fatherId');
     });
     test('select motherId name familyId provided motherId-$(familyId)', () => {
       wrapper.setProps({ familyId: 1 });
       wrapper.setProps(familyTwoFemales);
-      expect(wrapper.find('select').props().name).toEqual('motherId-1');
+      expect(wrapper.find('select').props().name).toBe('motherId-1');
     });
     test('select fatherId displays when fatherId options are available', () => {
       wrapper.setProps(familyOneMale);
@@ -99,12 +99,12 @@ describe('<MotherFatherIds>', () => {
     test('select fatherId value is fatherId', () => {
       wrapper.setProps({ fatherId: 12345 });
       wrapper.setProps(familyOneMale);
-      expect(wrapper.find('select[name="fatherId"]').props().value).toEqual(12345);
+      expect(wrapper.find('select[name="fatherId"]').props().value).toBe(12345);
     });
     test('select motherId value is motherId', () => {
       wrapper.setProps({ motherId: 12345 });
       wrapper.setProps(familyOneFemale);
-      expect(wrapper.find('select[name="motherId"]').props().value).toEqual(12345);
+      expect(wrapper.find('select[name="motherId"]').props().value).toBe(12345);
     });
   });
 });

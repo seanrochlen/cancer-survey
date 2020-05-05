@@ -23,12 +23,12 @@ describe('<Relationship>', () => {
   describe('Events', () => {
     test('Change - Select relationship - handleChange', () => {
       wrapper.find('select').simulate('change', { target: { value : 'son'} } );
-      expect(wrapper.props().handleChange.mock.calls.length).toEqual(1);
+      expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
   });
   describe('Rendering', () => {
     test('select relationship name is relationship-${familyId}', () => {
-      expect(wrapper.find('select').props().name).toEqual('relationship-0');
+      expect(wrapper.find('select').props().name).toBe('relationship-0');
     });
     test('select relationship value person.relationship', () => {
       expect(wrapper.find('select').props().value).toBe('father');

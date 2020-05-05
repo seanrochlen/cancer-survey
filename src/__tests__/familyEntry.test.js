@@ -25,23 +25,23 @@ describe('<FamilyEntry>', () => {
   describe('Events', () => {
     test('Click - Button - removeEntry', () => {
       wrapper.find('button').first().simulate('click');
-      expect(wrapper.props().removeEntry.mock.calls.length).toEqual(1);
+      expect(wrapper.props().removeEntry.mock.calls.length).toBe(1);
     });
     test('Change - Input name-${familyId} - handleChange', () => {
       wrapper.find('#nameInput').simulate('change', { target: { value : 'hi'} } );
-      expect(wrapper.props().handleChange.mock.calls.length).toEqual(1);
+      expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
     test('Change - Select age-${familyId} - handleChange', () => {
       wrapper.find('select').first().simulate('change', { target: { value : '5'} } );
-      expect(wrapper.props().handleChange.mock.calls.length).toEqual(2);
+      expect(wrapper.props().handleChange.mock.calls.length).toBe(2);
     });
   });
   describe('Rendering', () => {
     test('Input - name-${familyId} - person.name', () => {
-      expect(wrapper.find('#nameInput').props().value).toEqual('hello');
+      expect(wrapper.find('#nameInput').props().value).toBe('hello');
     });
     test('Select - age-${familyId} - person.age', () => {
-      expect(wrapper.find('select').first().props().value).toEqual('2');
+      expect(wrapper.find('select').first().props().value).toBe('2');
     });
   });
 });

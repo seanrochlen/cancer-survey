@@ -25,7 +25,7 @@ describe('<CancerEntries>', () => {
   describe('Events', () => {
     test('Click - Button - addCancerDiagnosis', () => {
       wrapper.find('button').simulate('click');
-      expect(wrapper.props().addCancerDiagnosis.mock.calls.length).toEqual(1);
+      expect(wrapper.props().addCancerDiagnosis.mock.calls.length).toBe(1);
     });
   });
   describe('Rendering', () => {

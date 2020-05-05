@@ -22,11 +22,11 @@ describe('<Gender>', () => {
   describe('Events', () => {
     test('Change - Input genderMale - handleChange', () => {
       wrapper.find('#gender-male').simulate('change', { target: { value : 'male'} } );
-      expect(wrapper.props().handleChange.mock.calls.length).toEqual(1);
+      expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
     test('Change - Input genderFemale - handleChange', () => {
       wrapper.find('#gender-female').simulate('change', { target: { value : 'female'} } );
-      expect(wrapper.props().handleChange.mock.calls.length).toEqual(2);
+      expect(wrapper.props().handleChange.mock.calls.length).toBe(2);
     });
   });
   describe('Rendering', () => {

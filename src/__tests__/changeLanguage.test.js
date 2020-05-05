@@ -24,14 +24,14 @@ describe('<ChangeLanguage>', () => {
   });
   describe('Events', () => {
     test('Click - Button 1 - changes language to en', () => {
-      expect(wrapper.find('button').at(0).hasClass('selected')).toEqual(true);
+      expect(wrapper.find('button').at(0).hasClass('selected')).toBe(true);
       wrapper.find('button').at(0).simulate('click');
-      expect(useTranslation.mock.results[0].value.i18n.changeLanguage.mock.calls[0][0]).toEqual('en');
+      expect(useTranslation.mock.results[0].value.i18n.changeLanguage.mock.calls[0][0]).toBe('en');
     });
     test('Click - Button 2 - changes language to es', () => {
-      expect(wrapper.find('button').at(1).hasClass('selected')).toEqual(false);
+      expect(wrapper.find('button').at(1).hasClass('selected')).toBe(false);
       wrapper.find('button').at(1).simulate('click');
-      expect(useTranslation.mock.results[1].value.i18n.changeLanguage.mock.calls[0][0]).toEqual('es');
+      expect(useTranslation.mock.results[1].value.i18n.changeLanguage.mock.calls[0][0]).toBe('es');
     });
   });
 });
