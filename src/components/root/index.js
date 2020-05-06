@@ -33,13 +33,19 @@ export class Root extends Component {
       fatherId: '',
       disabled: false,
     };
+
+    this.addCancerDiagnosis = this.addCancerDiagnosis.bind(this);
+    this.addFamilyMember = this.addFamilyMember.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.removeEntry = this.removeEntry.bind(this);
+    this.submitData = this.submitData.bind(this);
   }
 
   /**
    * Adds a cancer entry in either the cancers data structure or family cancers data structure
    * @param {number} familyId position in family data structure
    */
-  addCancerDiagnosis = (familyId) => {
+  addCancerDiagnosis(familyId) {
     const { cancers, family } = this.state;
     const newCancerRow = { id: shortid.generate(), cancerType: '', ageOfDiagnosis: '' };
 
@@ -59,10 +65,10 @@ export class Root extends Component {
   /**
    * Adds a new entry to family
    */
-  addFamilyMember = () => {
+  addFamilyMember() {
     const { family } = this.state;
 
-    family.push({ id: shortid.generate(), name: '', age: '', motherId: null, fatherId: null, gender: '', relationship: '', cancers: [] });
+    family.push({ id: shortid.generate(), name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] });
 
     this.setState({ family });
   }
@@ -71,7 +77,7 @@ export class Root extends Component {
    * Handles state changes
    * @param {object} e event
    */
-  handleChange = (e) => {
+  handleChange(e) {
     const { cancers, family } = this.state;
     const { target } = e;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -91,13 +97,12 @@ export class Root extends Component {
       else {
         family[splitName[1]][splitName[0]] = value;
         const changedStates = {
-          family
+          family,
         };
         if (splitName[0] === 'relationship' && value === 'father')
           changedStates.fatherId = family[splitName[1]].id;
         if (splitName[0] === 'relationship' && value === 'mother')
           changedStates.motherId = family[splitName[1]].id;
-
         this.setState({ ...changedStates });
       }
     }
@@ -116,7 +121,7 @@ export class Root extends Component {
    * @param {number} index position in data structure cancers or family
    * @param {number} familyId position in data structure family
    */
-  removeEntry = (field, index, familyId) => {
+  removeEntry(field, index, familyId) {
     const { cancers, family } = this.state;
 
     if (field === 'cancers') {
@@ -139,9 +144,10 @@ export class Root extends Component {
    * Handles submitting the form
    * @param {object} e event
    */
-  submitData = (e) => {
+  submitData(e) {
     e.preventDefault();
-    const { id, firstName, lastName, birthDay, birthMonth, birthYear, gender, cancers, family, fatherId, motherId } = this.state;
+    const { id, firstName, lastName, birthDay, birthMonth, birthYear, gender, cancers, family } = this.state;
+    let { fatherId, motherId } = this.state;
     const endpoint = '';
     const dateOfBirth = `${birthYear}-${birthMonth.padStart(2, '0')}-${birthDay.padStart(2, '0')}`;
 
@@ -265,7 +271,7 @@ export class Root extends Component {
           <input type="submit" value={ t('input-submit') } />
         </form>
 
-        {disabled && <p className="submission-text">Thank you for submitting! We'll be in touch shortly.</p>}
+        {disabled && <p className="submission-text">Thank you for submitting! We&apos;ll be in touch shortly.</p>}
 
         <Footer />
 

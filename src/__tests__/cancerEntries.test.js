@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import CancerEntries from '../components/cancerEntries';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: key => key})
+  useTranslation: () => ({ t: (key) => key }),
 }));
 
 const props = {
@@ -11,12 +11,13 @@ const props = {
   cancers: [],
   familyId: undefined,
   handleChange: jest.fn(),
-  removeEntry: jest.fn()
+  removeEntry: jest.fn(),
 };
 let wrapper;
 
 describe('<CancerEntries>', () => {
   beforeEach(() => {
+    /* eslint-disable react/jsx-props-no-spreading */
     wrapper = mount(<CancerEntries {...props} />);
   });
   afterEach(() => {

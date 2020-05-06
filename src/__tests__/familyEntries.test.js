@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import FamilyEntries from '../components/familyEntries';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: key => key})
+  useTranslation: () => ({ t: (key) => key }),
 }));
 
 const props = {
@@ -11,12 +11,13 @@ const props = {
   addFamilyMember: jest.fn(),
   family: [],
   handleChange: jest.fn(),
-  removeEntry: jest.fn()
+  removeEntry: jest.fn(),
 };
 let wrapper;
 
 describe('<FamilyEntries>', () => {
   beforeEach(() => {
+    /* eslint-disable react/jsx-props-no-spreading */
     wrapper = mount(<FamilyEntries {...props} />);
   });
   afterEach(() => {

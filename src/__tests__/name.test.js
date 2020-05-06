@@ -22,11 +22,11 @@ describe('<Name>', () => {
   });
   describe('Events', () => {
     test('Change - Input firstName - handleChange', () => {
-      wrapper.find('input[name="firstName"]').simulate('change', { target: { value : 'test'} } );
+      wrapper.find('input[name="firstName"]').simulate('change', { target: { value: 'test'}});
       expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
     test('Change - Input lastName - handleChange', () => {
-      wrapper.find('input[name="lastName"]').simulate('change', { target: { value : 'test'} } );
+      wrapper.find('input[name="lastName"]').simulate('change', { target: { value: 'test'}});
       expect(wrapper.props().handleChange.mock.calls.length).toBe(2);
     });
   });

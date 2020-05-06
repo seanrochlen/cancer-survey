@@ -1,17 +1,16 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { useTranslation } from 'react-i18next';
 import ChangeLanguage from '../components/changeLanguage';
 
 jest.mock('react-i18next', () => ({
   useTranslation: jest.fn(() => ({
     i18n: {
       changeLanguage: jest.fn(),
-      language: 'en'
-    }
-  }))
+      language: 'en',
+    },
+  })),
 }));
-
-import { useTranslation } from 'react-i18next';
 
 let wrapper;
 

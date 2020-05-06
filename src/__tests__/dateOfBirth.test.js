@@ -3,19 +3,20 @@ import { mount } from 'enzyme';
 import DateOfBirth from '../components/dateOfBirth';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: key => key})
+  useTranslation: () => ({ t: (key) => key }),
 }));
 
 const props = {
   birthDay: '1',
   birthMonth: '2',
   birthYear: '1950',
-  handleChange: jest.fn()
+  handleChange: jest.fn(),
 };
 let wrapper;
 
 describe('<DateOfBirth>', () => {
   beforeEach(() => {
+    /* eslint-disable react/jsx-props-no-spreading */
     wrapper = mount(<DateOfBirth {...props} />);
   });
   afterEach(() => {
@@ -23,15 +24,15 @@ describe('<DateOfBirth>', () => {
   });
   describe('Events', () => {
     test('Change - Select birthMonth - handleChange', () => {
-      wrapper.find('select').at(0).simulate('change', { target: { value : '5'} } );
+      wrapper.find('select').at(0).simulate('change', { target: { value: '5' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
     test('Change - Select birthDay - handleChange', () => {
-      wrapper.find('select').at(1).simulate('change', { target: { value : '10'} } );
+      wrapper.find('select').at(1).simulate('change', { target: { value: '10' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(2);
     });
     test('Change - Select birthYear - handleChange', () => {
-      wrapper.find('select').at(2).simulate('change', { target: { value : '2000'} } );
+      wrapper.find('select').at(2).simulate('change', { target: { value: '2000' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(3);
     });
   });

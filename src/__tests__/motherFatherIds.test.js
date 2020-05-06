@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import MotherFatherIds from '../components/motherFatherIds';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: key => key})
+  useTranslation: () => ({ t: (key) => key }),
 }));
 
 const props = {
@@ -11,7 +11,7 @@ const props = {
   motherId: '',
   family: [],
   familyId: undefined,
-  handleChange: jest.fn()
+  handleChange: jest.fn(),
 };
 let wrapper;
 const familyOneMale = { family: [{ id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] }] };
@@ -20,23 +20,24 @@ const familyTwoMales = {
   family: [
     { id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
     { id: 123456, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] }
-  ]
+  ],
 };
 const familyTwoFemales = {
   family: [
     { id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
     { id: 123456, name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }
-  ]
+  ],
 };
 const familyOneMaleOneFemale = {
   family: [
     { id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
     { id: 123456, name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }
-  ]
+  ],
 };
 
 describe('<MotherFatherIds>', () => {
   beforeEach(() => {
+    /* eslint-disable react/jsx-props-no-spreading */
     wrapper = mount(<MotherFatherIds {...props} />);
   });
   afterEach(() => {
@@ -45,12 +46,12 @@ describe('<MotherFatherIds>', () => {
   describe('Events', () => {
     test('Change - Select fatherId - handleChange', () => {
       wrapper.setProps(familyOneMale);
-      wrapper.find('select').simulate('change', { target: { value : '12345'} } );
+      wrapper.find('select').simulate('change', { target: { value: '12345' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
     test('Change - Select motherId - handleChange', () => {
       wrapper.setProps(familyOneFemale);
-      wrapper.find('select').simulate('change', { target: { value : '12345'} } );
+      wrapper.find('select').simulate('change', { target: { value: '12345' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(2);
     });
   });

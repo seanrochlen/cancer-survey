@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import Relationship from '../components/relationship';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: key => key})
+  useTranslation: () => ({ t: (key) => key }),
 }));
 
 const props = {
@@ -15,6 +15,7 @@ let wrapper;
 
 describe('<Relationship>', () => {
   beforeEach(() => {
+    /* eslint-disable react/jsx-props-no-spreading */
     wrapper = mount(<Relationship {...props} />);
   });
   afterEach(() => {
@@ -22,12 +23,12 @@ describe('<Relationship>', () => {
   });
   describe('Events', () => {
     test('Change - Select relationship - handleChange', () => {
-      wrapper.find('select').simulate('change', { target: { value : 'son'} } );
+      wrapper.find('select').simulate('change', { target: { value: 'son' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
   });
   describe('Rendering', () => {
-    test('select relationship name is relationship-${familyId}', () => {
+    test('select relationship name is relationship-familyId', () => {
       expect(wrapper.find('select').props().name).toBe('relationship-0');
     });
     test('select relationship value person.relationship', () => {
