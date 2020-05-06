@@ -58,6 +58,8 @@ function FamilyEntry(props) {
         </div>
 
         <MotherFatherIds
+          fatherId={person.fatherId}
+          motherId={person.motherId}
           family={family}
           familyId={familyId}
           handleChange={handleChange}

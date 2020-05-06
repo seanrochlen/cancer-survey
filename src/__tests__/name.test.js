@@ -3,18 +3,19 @@ import { mount } from 'enzyme';
 import Name from '../components/name';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: key => key})
+  useTranslation: () => ({ t: (key) => key }),
 }));
 
 const props = {
   firstName: '',
   lastName: '',
-  handleChange: jest.fn()
+  handleChange: jest.fn(),
 };
 let wrapper;
 
 describe('<Name>', () => {
   beforeEach(() => {
+    /* eslint-disable react/jsx-props-no-spreading */
     wrapper = mount(<Name {...props} />);
   });
   afterEach(() => {
@@ -22,11 +23,11 @@ describe('<Name>', () => {
   });
   describe('Events', () => {
     test('Change - Input firstName - handleChange', () => {
-      wrapper.find('input[name="firstName"]').simulate('change', { target: { value: 'test'}});
+      wrapper.find('input[name="firstName"]').simulate('change', { target: { value: 'test' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(1);
     });
     test('Change - Input lastName - handleChange', () => {
-      wrapper.find('input[name="lastName"]').simulate('change', { target: { value: 'test'}});
+      wrapper.find('input[name="lastName"]').simulate('change', { target: { value: 'test' } });
       expect(wrapper.props().handleChange.mock.calls.length).toBe(2);
     });
   });

@@ -8,9 +8,9 @@ jest.mock('react-i18next', () => ({
 
 const props = {
   addCancerDiagnosis: jest.fn(),
-  family: [{ id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] }],
+  family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] }],
   handleChange: jest.fn(),
-  person: { id: 12345, name: 'hello', age: '2' },
+  person: { id: '12345', name: 'hello', age: '2', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] },
   removeEntry: jest.fn(),
 };
 let wrapper;

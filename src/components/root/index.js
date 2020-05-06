@@ -224,7 +224,7 @@ export class Root extends Component {
     const { t } = this.props;
 
     return (
-      <main role="main" className={disabled ? 'disabled': ''}>
+      <main role="main" className={disabled ? 'disabled' : ''}>
         <ChangeLanguage />
 
         <header>
@@ -268,7 +268,7 @@ export class Root extends Component {
             handleChange={this.handleChange}
             removeEntry={this.removeEntry}
           />
-          <input type="submit" value={ t('input-submit') } />
+          <input type="submit" value={t('input-submit')} />
         </form>
 
         {disabled && <p className="submission-text">Thank you for submitting! We&apos;ll be in touch shortly.</p>}

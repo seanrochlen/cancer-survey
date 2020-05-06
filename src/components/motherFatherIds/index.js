@@ -78,6 +78,8 @@ function MotherFatherIds(props) {
  * @param {function} handleChange updates parent state
  */
 MotherFatherIds.propTypes = {
+  fatherId: PropTypes.string.isRequired,
+  motherId: PropTypes.string.isRequired,
   family: PropTypes.instanceOf(Array).isRequired,
   familyId: PropTypes.number,
   handleChange: PropTypes.func.isRequired,

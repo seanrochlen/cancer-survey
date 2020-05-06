@@ -14,24 +14,24 @@ const props = {
   handleChange: jest.fn(),
 };
 let wrapper;
-const familyOneMale = { family: [{ id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] }] };
-const familyOneFemale = { family: [{ id: 12346, name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }] };
+const familyOneMale = { family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] }] };
+const familyOneFemale = { family: [{ id: '12346', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }] };
 const familyTwoMales = {
   family: [
-    { id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
-    { id: 123456, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] }
+    { id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
+    { id: '123456', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
   ],
 };
 const familyTwoFemales = {
   family: [
-    { id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
-    { id: 123456, name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }
+    { id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
+    { id: '123456', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
   ],
 };
 const familyOneMaleOneFemale = {
   family: [
-    { id: 12345, name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
-    { id: 123456, name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }
+    { id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
+    { id: '123456', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
   ],
 };
 
@@ -98,14 +98,14 @@ describe('<MotherFatherIds>', () => {
       expect(wrapper.find('select[name="motherId"]').exists()).toBe(true);
     });
     test('select fatherId value is fatherId', () => {
-      wrapper.setProps({ fatherId: 12345 });
+      wrapper.setProps({ fatherId: '12345' });
       wrapper.setProps(familyOneMale);
-      expect(wrapper.find('select[name="fatherId"]').props().value).toBe(12345);
+      expect(wrapper.find('select[name="fatherId"]').props().value).toBe('12345');
     });
     test('select motherId value is motherId', () => {
-      wrapper.setProps({ motherId: 12345 });
+      wrapper.setProps({ motherId: '12345' });
       wrapper.setProps(familyOneFemale);
-      expect(wrapper.find('select[name="motherId"]').props().value).toBe(12345);
+      expect(wrapper.find('select[name="motherId"]').props().value).toBe('12345');
     });
   });
 });

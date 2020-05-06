@@ -34,7 +34,7 @@ describe('<FamilyEntries>', () => {
       expect(wrapper.find('.familyEntries').exists()).toBe(false);
     });
     test('render .familyEntries if entries in family', () => {
-      wrapper.setProps({ family: [{ id: 12345, name: '', age: '', motherId: null, fatherId: null, gender: '', relationship: '', cancers: [] }] });
+      wrapper.setProps({ family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] }] });
       expect(wrapper.find('.familyEntries').exists()).toBe(true);
     });
   });
