@@ -136,6 +136,39 @@ describe('<Root>', () => {
           expect(wrapper.state('family')[0].cancers[0].cancerType).toBe('brain');
         });
       });
+    }); // handleChange
+    describe('removeEntry(field, index, familyId)', () => {
+      test('field is not cancers remove the family index', () => {
+        wrapper.setState({ family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] }] });
+        wrapper.instance().removeEntry('family', 0);
+        expect(wrapper.state('family').length).toBe(0);
+      });
+      test('field is cancers and no familyId - remove the cancers index', () => {
+        wrapper.setState({ cancers: [{ id: '12345', ageOfDiagnosis: '', cancerType: '' }] });
+        wrapper.instance().removeEntry('cancers', 0);
+        expect(wrapper.state('cancers').length).toBe(0);
+      });
+      test('field is cancers and familyId - remove the cancers index at family familyId', () => {
+        wrapper.setState(
+          {
+            family: [{
+              id: '12345',
+              name: '',
+              age: '',
+              motherId: '',
+              fatherId: '',
+              gender: '',
+              relationship: '',
+              cancers: [{ id: '123', ageOfDiagnosis: '', cancerType: '' }],
+            }],
+          },
+        );
+        wrapper.instance().removeEntry('cancers', 0, 0);
+        expect(wrapper.state('family')[0].cancers.length).toBe(0);
+      });
+    }); // removeEntry
+    describe('submitData', () => {
+      // tbd once this is function is complete
     });
   });
   describe('Rendering', () => {
