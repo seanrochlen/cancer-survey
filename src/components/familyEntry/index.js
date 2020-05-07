@@ -71,6 +71,7 @@ function FamilyEntry(props) {
         />
 
         <Relationship
+          family={family}
           familyId={familyId}
           person={person}
           handleChange={handleChange}

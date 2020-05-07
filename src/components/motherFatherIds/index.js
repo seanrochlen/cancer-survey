@@ -73,6 +73,8 @@ function MotherFatherIds(props) {
 
 /**
  * props
+ * @param {number} fatherId id number representing person's father
+ * @param {number} motherId id number representing person's mother
  * @param {array} family data structure for family entries
  * @param {number} id number representing the position witin the family data structure
  * @param {function} handleChange updates parent state

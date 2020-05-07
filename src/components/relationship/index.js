@@ -7,14 +7,14 @@ import shortid from 'shortid';
  * Selection for relationship
  */
 function Relationship(props) {
-  const { familyId, handleChange, person } = props;
+  const { family, familyId, handleChange, person } = props;
   const { t } = useTranslation();
   const ageOptions = [];
 
   for (let a = 0; a <= 120; a += 1)
     ageOptions.push(<option key={shortid.generate()} value={a}>{a}</option>);
 
-  const relationshipData = [
+  let relationshipData = [
     { value: 'brother', text: t('option-brother') },
     { value: 'daughter', text: t('option-daughter') },
     { value: 'father', text: t('option-father') },
@@ -39,6 +39,15 @@ function Relationship(props) {
     { value: 'sister', text: t('option-sister') },
     { value: 'son', text: t('option-son') },
   ];
+
+  // remove father or mother from relationship options if a different family member is already selected having this relationship
+  const fatherRemovalCheck = family.some((member) => member.id !== person.id && member.relationship === 'father');
+  const motherRemovalCheck = family.some((member) => member.id !== person.id && member.relationship === 'mother');
+  relationshipData = relationshipData.filter((entry) => {
+    if ((fatherRemovalCheck && entry.value === 'father') || (motherRemovalCheck && entry.value === 'mother'))
+      return false;
+    return entry;
+  });
 
   const relationshipsSorted = relationshipData.sort((a, b) => {
     if (a.text < b.text)
@@ -69,11 +78,13 @@ function Relationship(props) {
 
 /**
  * props
+ * @param {array} family data structure for family entries
  * @param {number} familyId number representing the position witin the family data structure
  * @param {function} handleChange updates parent state
  * @param {object} person family member
  */
 Relationship.propTypes = {
+  family: PropTypes.instanceOf(Array).isRequired,
   familyId: PropTypes.number.isRequired,
   handleChange: PropTypes.func.isRequired,
   person: PropTypes.instanceOf(Object).isRequired,
