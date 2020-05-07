@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import CancerEntries from '../cancerEntries';
 import Gender from '../gender';
-import MotherFatherIds from '../motherFatherIds';
+// import MotherFatherIds from '../motherFatherIds';
 import Relationship from '../relationship';
 
 /**
