@@ -82,10 +82,25 @@ export class Root extends Component {
     const { target } = e;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const splitName = target.name.split('-');
+    let changedStates;
 
     // patient
-    if (splitName.length === 1)
-      this.setState({ [target.name]: value });
+    if (splitName.length === 1) {
+      changedStates = {
+        [target.name]: value,
+      };
+
+      if (target.name === 'motherId' || target.name === 'fatherId') {
+        // check if there is a mother or father relationship established on the family member or we need to apply it based on the user selection
+        if (!family.some((member) => member.relationship === target.name)) {
+          const familyMemberIndex = family.findIndex((p) => p.name === value);
+          family[familyMemberIndex].relationship = target.name === 'motherId' ? 'mother' : 'father';
+          changedStates.family = family;
+        }
+      }
+
+      this.setState({ ...changedStates });
+    }
 
     // cancers or family
     if (splitName.length === 2) {
@@ -96,7 +111,7 @@ export class Root extends Component {
       }
       else {
         family[splitName[1]][splitName[0]] = value;
-        const changedStates = {
+        changedStates = {
           family,
         };
         if (splitName[0] === 'relationship' && value === 'father')

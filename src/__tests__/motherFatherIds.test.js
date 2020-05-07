@@ -14,24 +14,24 @@ const props = {
   handleChange: jest.fn(),
 };
 let wrapper;
-const familyOneMale = { family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] }] };
-const familyOneFemale = { family: [{ id: '12346', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }] };
+const familyOneMale = { family: [{ id: '12345', name: 'john', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] }] };
+const familyOneFemale = { family: [{ id: '12346', name: 'cindy', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] }] };
 const familyTwoMales = {
   family: [
-    { id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
-    { id: '123456', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
+    { id: '12345', name: 'john', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
+    { id: '123456', name: 'alex', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
   ],
 };
 const familyTwoFemales = {
   family: [
-    { id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
-    { id: '123456', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
+    { id: '12345', name: 'cindy', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
+    { id: '123456', name: 'nancy', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
   ],
 };
 const familyOneMaleOneFemale = {
   family: [
-    { id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
-    { id: '123456', name: '', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
+    { id: '12345', name: 'john', age: '', motherId: '', fatherId: '', gender: 'male', relationship: '', cancers: [] },
+    { id: '123456', name: 'cindy', age: '', motherId: '', fatherId: '', gender: 'female', relationship: '', cancers: [] },
   ],
 };
 

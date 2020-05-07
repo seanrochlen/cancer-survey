@@ -10,22 +10,22 @@ function MotherFatherIds(props) {
   const { fatherId, motherId, family, familyId, handleChange } = props;
   const { t } = useTranslation();
 
-  // filter by gender and not current family member being displayed
-  const familyFilteredByFemales = family.filter((person) => {
-    if (familyId !== undefined)
-      return person.gender === 'female' && person.id !== family[familyId].id;
-    if (motherId !== '')
-      return person.id;
-    return person.gender === 'female';
-  });
+  // filters the family by specified gender
+  function filterFamilyByGender(gender) {
+    return family.filter((person) => {
+      // inside family
+      if (familyId !== undefined)
+        return person.gender === gender && person.id !== family[familyId].id && person.name !== '';
+      // not inside family
+      if (((gender === 'female' && motherId !== '') || (gender === 'male' && fatherId !== '')) && person.name !== '')
+        return person.id;
+      return person.gender === gender && person.name !== '';
+    });
+  }
 
-  const familyFilteredByMales = family.filter((person) => {
-    if (familyId !== undefined)
-      return person.gender === 'male' && person.id !== family[familyId].id;
-    if (fatherId !== '')
-      return person.id;
-    return person.gender === 'male';
-  });
+  // filter family by gender to create selection options for fatherId motherId
+  const familyFilteredByFemales = filterFamilyByGender('female');
+  const familyFilteredByMales = filterFamilyByGender('male');
 
   // map options for selections of possibly family members
   const motherIdOptions = familyFilteredByFemales.map((person) => {
