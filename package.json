@@ -1,7 +1,8 @@
 {
-  "name": "Smith-Syndrome-Cancer-Study",
+  "name": "smith-syndrome-cancer-study",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
