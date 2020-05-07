@@ -78,7 +78,7 @@ export class Root extends Component {
    * @param {object} e event
    */
   handleChange(e) {
-    const { cancers, family } = this.state;
+    const { cancers, gender, family, id, fatherId, motherId } = this.state;
     const { target } = e;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const splitName = target.name.split('-');
@@ -114,10 +114,23 @@ export class Root extends Component {
         changedStates = {
           family,
         };
+        // update motherId or fatherId if relationship matches
         if (splitName[0] === 'relationship' && value === 'father')
           changedStates.fatherId = family[splitName[1]].id;
         if (splitName[0] === 'relationship' && value === 'mother')
           changedStates.motherId = family[splitName[1]].id;
+        if (splitName[0] === 'relationship' && (value === 'son' || value === 'daughter') && gender === 'male')
+          changedStates.family[splitName[1]].fatherId = id;
+        if (splitName[0] === 'relationship' && (value === 'son' || value === 'daughter') && gender === 'female')
+          changedStates.family[splitName[1]].motherId = id;
+        if (splitName[0] === 'relationship' && (value === 'brother' || value === 'sister')) {
+          fatherId && (changedStates.family[splitName[1]].fatherId = fatherId);
+          motherId && (changedStates.family[splitName[1]].motherId = motherId);
+        }
+        if (splitName[0] === 'relationship' && ((value === 'maternal half brother') || (value === 'maternal half sister')))
+          motherId && (changedStates.family[splitName[1]].motherId = motherId);
+        if (splitName[0] === 'relationship' && ((value === 'paternal half brother') || (value === 'paternal half sister')))
+          fatherId && (changedStates.family[splitName[1]].fatherId = fatherId);
         this.setState({ ...changedStates });
       }
     }
