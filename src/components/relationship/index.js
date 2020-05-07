@@ -41,6 +41,7 @@ function Relationship(props) {
   ];
 
   // remove father or mother from relationship options if a different family member is already selected having this relationship
+  // NOTE: these checks will be expanded and refactored to accomodate more relationship checking
   const fatherRemovalCheck = family.some((member) => member.id !== person.id && member.relationship === 'father');
   const motherRemovalCheck = family.some((member) => member.id !== person.id && member.relationship === 'mother');
   relationshipData = relationshipData.filter((entry) => {
