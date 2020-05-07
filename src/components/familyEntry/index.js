@@ -57,13 +57,13 @@ function FamilyEntry(props) {
           </select>
         </div>
 
-        <MotherFatherIds
+        {/* <MotherFatherIds
           fatherId={person.fatherId}
           motherId={person.motherId}
           family={family}
           familyId={familyId}
           handleChange={handleChange}
-        />
+        /> */}
 
         <Gender
           familyId={familyId}
