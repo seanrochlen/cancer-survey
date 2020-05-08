@@ -188,36 +188,35 @@ body {
         margin-top: 25px;
         color: red;
       }
-    } // .main
-
-    &.disabled {
-      input {
-        background: $grey-light;
-      }
-      input[type=radio] {
-        display: none;
-      }
-      select {
-        background: $grey-light;
-      }
-      div.gender {
-        label {
-         margin-bottom: 20px;
-         display: inline-block;
-
-         :before {
-           content: "";
-           width: 14px;
-           height: 15px;
-           background: $grey-light;
-           border: 1px solid $grey;
-           border-radius: 25px;
+      &.disabled {
+        input {
+          background: $grey-light;
+        }
+        input[type=radio] {
+          display: none;
+        }
+        select {
+          background: $grey-light;
+        }
+        div.gender {
+          label {
+           margin-bottom: 20px;
            display: inline-block;
-           margin: 3px 10px 0 0;
+  
+           &:before {
+             content: "";
+             width: 14px;
+             height: 15px;
+             background: $grey-light;
+             border: 1px solid $grey;
+             border-radius: 25px;
+             display: inline-block;
+             margin: 3px 10px 0 0;
+           }
          }
-       }
+        }
       }
-    }
+    } // .main
   }
 
   @media (max-width: 767px) {

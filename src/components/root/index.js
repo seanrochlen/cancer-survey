@@ -9,7 +9,7 @@ import DateOfBirth from '../dateOfBirth';
 import FamilyEntries from '../familyEntries';
 import Footer from '../footer';
 import Gender from '../gender';
-import MotherFatherIds from '../motherFatherIds';
+// import MotherFatherIds from '../motherFatherIds';
 import Name from '../name';
 
 /**
@@ -78,29 +78,14 @@ export class Root extends Component {
    * @param {object} e event
    */
   handleChange(e) {
-    const { cancers, gender, family, id, fatherId, motherId } = this.state;
+    const { cancers, family } = this.state;
     const { target } = e;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const splitName = target.name.split('-');
-    let changedStates;
 
     // patient
-    if (splitName.length === 1) {
-      changedStates = {
-        [target.name]: value,
-      };
-
-      if (target.name === 'motherId' || target.name === 'fatherId') {
-        // check if there is a mother or father relationship established on the family member or we need to apply it based on the user selection
-        if (!family.some((member) => member.relationship === target.name)) {
-          const familyMemberIndex = family.findIndex((p) => p.name === value);
-          family[familyMemberIndex].relationship = target.name === 'motherId' ? 'mother' : 'father';
-          changedStates.family = family;
-        }
-      }
-
-      this.setState({ ...changedStates });
-    }
+    if (splitName.length === 1)
+      this.setState({ [target.name]: value });
 
     // cancers or family
     if (splitName.length === 2) {
@@ -111,27 +96,7 @@ export class Root extends Component {
       }
       else {
         family[splitName[1]][splitName[0]] = value;
-        changedStates = {
-          family,
-        };
-        // update motherId or fatherId if relationship matches
-        if (splitName[0] === 'relationship' && value === 'father')
-          changedStates.fatherId = family[splitName[1]].id;
-        if (splitName[0] === 'relationship' && value === 'mother')
-          changedStates.motherId = family[splitName[1]].id;
-        if (splitName[0] === 'relationship' && (value === 'son' || value === 'daughter') && gender === 'male')
-          changedStates.family[splitName[1]].fatherId = id;
-        if (splitName[0] === 'relationship' && (value === 'son' || value === 'daughter') && gender === 'female')
-          changedStates.family[splitName[1]].motherId = id;
-        if (splitName[0] === 'relationship' && (value === 'brother' || value === 'sister')) {
-          fatherId && (changedStates.family[splitName[1]].fatherId = fatherId);
-          motherId && (changedStates.family[splitName[1]].motherId = motherId);
-        }
-        if (splitName[0] === 'relationship' && ((value === 'maternal half brother') || (value === 'maternal half sister')))
-          motherId && (changedStates.family[splitName[1]].motherId = motherId);
-        if (splitName[0] === 'relationship' && ((value === 'paternal half brother') || (value === 'paternal half sister')))
-          fatherId && (changedStates.family[splitName[1]].fatherId = fatherId);
-        this.setState({ ...changedStates });
+        this.setState({ family });
       }
     }
 
@@ -186,14 +151,50 @@ export class Root extends Component {
 
     // before submission we need to adjust the values of numbers saved and remove the unnecessary ids in cancers
     for (let i = 0; i < cancers.length; i += 1) {
-      delete cancers[i].id;
-      cancers[i].ageOfDiagnosis = cancers[i].ageOfDiagnosis.padStart(2, '0');
+      // need to remove before submitting data
+      // delete cancers[i].id;
+      if (cancers[i].ageOfDiagnosis)
+        cancers[i].ageOfDiagnosis = cancers[i].ageOfDiagnosis.padStart(2, '0');
     }
 
+    // find relationships for father and mother and set patient's fatherId and motherId
+    const fatherIdIndex = family.findIndex((member) => member.relationship === 'father');
+    if (fatherIdIndex !== -1)
+      fatherId = family[fatherIdIndex].id;
+    const motherIdIndex = family.findIndex((member) => member.relationship === 'mother');
+    if (motherIdIndex !== -1)
+      motherId = family[motherIdIndex].id;
+
     for (let i = 0; i < family.length; i += 1) {
-      family[i].id = family[i].name;
-      delete family[i].name;
-      family[i].age = family[i].age.padStart(2, '0');
+      const { relationship } = family[i];
+
+      // set all family members motherId / fatherId based on relationship
+      if ((relationship === 'son' || relationship === 'daughter') && gender === 'male')
+        family[i].fatherId = id;
+      if ((relationship === 'son' || relationship === 'daughter') && gender === 'female')
+        family[i].motherId = id;
+      if (relationship === 'brother' || relationship === 'sister') {
+        fatherId && (family[i].fatherId = fatherId);
+        motherId && (family[i].motherId = motherId);
+      }
+      if ((relationship === 'maternal half brother') || (relationship === 'maternal half sister'))
+        family[i].motherId = motherId;
+      if ((relationship === 'paternal half brother') || (relationship === 'paternal half sister'))
+        family[i].fatherId = fatherId;
+      if ((relationship === 'maternal uncle') || (relationship === 'maternal aunt')) {
+        const maternalGrandMotherIndex = family.findIndex((member) => member.relationship === 'maternal grandmother');
+        maternalGrandMotherIndex !== -1 && (family[i].motherId = family[maternalGrandMotherIndex].id);
+        const maternalGrandFatherIndex = family.findIndex((member) => member.relationship === 'maternal grandfather');
+        maternalGrandFatherIndex !== -1 && (family[i].fatherId = family[maternalGrandFatherIndex].id);
+      }
+      if ((relationship === 'paternal uncle') || (relationship === 'paternal aunt')) {
+        const paternalGrandMotherIndex = family.findIndex((member) => member.relationship === 'paternal grandmother');
+        paternalGrandMotherIndex !== -1 && (family[i].motherId = family[paternalGrandMotherIndex].id);
+        const paternalGrandFatherIndex = family.findIndex((member) => member.relationship === 'paternal grandfather');
+        paternalGrandFatherIndex !== -1 && (family[i].fatherId = family[paternalGrandFatherIndex].id);
+      }
+      if (family[i].age)
+        family[i].age = family[i].age.padStart(2, '0');
 
       if (family[i].motherId === '')
         motherId = null;
@@ -201,10 +202,18 @@ export class Root extends Component {
         fatherId = null;
 
       for (let j = 0; j < family[i].cancers.length; j += 1) {
-        delete family[i].cancers[j].id;
-        family[i].cancers[j].ageOfDiagnosis = family[i].cancers[j].ageOfDiagnosis.padStart(2, '0');
+        // don't need this for submission
+        // delete family[i].cancers[j].id;
+        if (family[i].cancers[j].ageOfDiagnosis)
+          family[i].cancers[j].ageOfDiagnosis = family[i].cancers[j].ageOfDiagnosis.padStart(2, '0');
       }
     }
+
+    // need to change ids for family members to the names and then delete names for submission
+    // for (let p = 0; p < family.length; p += 1) {
+    //   family[p].id = family[p].name;
+    //   delete family[p].name;
+    // }
 
     // validation goes here with UI interacting
     // 1. gender - required
@@ -248,7 +257,7 @@ export class Root extends Component {
   }
 
   render() {
-    const { birthDay, birthMonth, birthYear, firstName, lastName, cancers, family, fatherId, motherId, disabled } = this.state;
+    const { birthDay, birthMonth, birthYear, firstName, lastName, cancers, family, disabled } = this.state;
     const { t } = this.props;
 
     return (
@@ -275,12 +284,12 @@ export class Root extends Component {
 
           <Gender handleChange={this.handleChange} />
 
-          <MotherFatherIds
+          {/* <MotherFatherIds
             fatherId={fatherId}
             motherId={motherId}
             family={family}
             handleChange={this.handleChange}
-          />
+          /> */}
 
           <CancerEntries
             addCancerDiagnosis={this.addCancerDiagnosis}

@@ -11,7 +11,7 @@ function MotherFatherIds(props) {
   const { t } = useTranslation();
 
   // filters the family by specified gender
-  function filterFamilyByGender(gender) {
+  const filterFamilyByGender = (gender) => {
     return family.filter((person) => {
       // inside family
       if (familyId !== undefined)
@@ -21,7 +21,7 @@ function MotherFatherIds(props) {
         return person.id;
       return person.gender === gender && person.name !== '';
     });
-  }
+  };
 
   // filter family by gender to create selection options for fatherId motherId
   const familyFilteredByFemales = filterFamilyByGender('female');
