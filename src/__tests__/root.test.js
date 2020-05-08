@@ -83,30 +83,6 @@ describe('<Root>', () => {
             wrapper.instance().handleChange(e);
             expect(wrapper.state('family')[0].age).toBe('1');
           });
-          test('updates state fatherId if relationship = father', () => {
-            wrapper.setState({ family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] }] });
-            const e = {
-              target: {
-                type: 'select-one',
-                name: 'relationship-0',
-                value: 'father',
-              },
-            };
-            wrapper.instance().handleChange(e);
-            expect(wrapper.state('fatherId')).toBe('12345');
-          });
-          test('updates state motherId if relationship = mother', () => {
-            wrapper.setState({ family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] }] });
-            const e = {
-              target: {
-                type: 'select-one',
-                name: 'relationship-0',
-                value: 'mother',
-              },
-            };
-            wrapper.instance().handleChange(e);
-            expect(wrapper.state('motherId')).toBe('12345');
-          });
         });
       });
       describe('family cancers - splitName.length === 3', () => {

@@ -1,9 +1,32 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
+import combinedReducers from './redux';
 import Root from './components/root';
 import './assets/styles/index.scss';
 import * as serviceWorker from './serviceWorker';
 import './i18n';
+
+const middleware = [thunk]; // dispatch() functions
+let composed;
+
+if (process.env.ENVIRONMENT === 'dev') {
+  middleware.push(createLogger()); // logs actions
+  composed = compose(
+    applyMiddleware(...middleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  );
+}
+else
+  composed = applyMiddleware(...middleware);
+
+const store = createStore(
+  combinedReducers,
+  composed,
+);
 
 // loading component for suspense fallback
 const Loader = () => (
@@ -16,7 +39,9 @@ const Loader = () => (
 function App() {
   return (
     <Suspense fallback={<Loader />}>
-      <Root />
+      <Provider store={store}>
+        <Root />
+      </Provider>
     </Suspense>
   );
 }
