@@ -40,15 +40,27 @@ function Relationship(props) {
     { value: 'son', text: t('option-son') },
   ];
 
-  // remove father or mother from relationship options if a different family member is already selected having this relationship
-  // NOTE: these checks will be expanded and refactored to accomodate more relationship checking
-  const fatherRemovalCheck = family.some((member) => member.id !== person.id && member.relationship === 'father');
-  const motherRemovalCheck = family.some((member) => member.id !== person.id && member.relationship === 'mother');
-  relationshipData = relationshipData.filter((entry) => {
-    if ((fatherRemovalCheck && entry.value === 'father') || (motherRemovalCheck && entry.value === 'mother'))
-      return false;
-    return entry;
-  });
+  // remove relationships options if a different family member is already selected having this relationship
+  const removalChecks = [
+    'mother',
+    'father',
+    'paternal grandfather',
+    'paternal grandmother',
+    'maternal grandfather',
+    'maternal grandmother',
+  ];
+
+  const familyFiltered = family.filter((member) => removalChecks.includes(member.relationship) && person.id !== member.id);
+
+  if (familyFiltered.length > 0) {
+    const optionsToRemove = familyFiltered.map((member) => member.relationship);
+
+    relationshipData = relationshipData.filter((entry) => {
+      if (optionsToRemove.includes(entry.value))
+        return false;
+      return entry;
+    });
+  }
 
   const relationshipsSorted = relationshipData.sort((a, b) => {
     if (a.text < b.text)

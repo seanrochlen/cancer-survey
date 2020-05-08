@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 /**
  * Selections for mother and father
- * NOTE: More checks needed for family members relationship parentid matching
  */
 function MotherFatherIds(props) {
   const { fatherId, motherId, family, familyId, handleChange } = props;
