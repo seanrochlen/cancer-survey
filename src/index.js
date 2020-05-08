@@ -13,7 +13,7 @@ import './i18n';
 const middleware = [thunk]; // dispatch() functions
 let composed;
 
-if (process.env.ENVIRONMENT === 'dev') {
+if (process.env.NODE_ENV === 'development') {
   middleware.push(createLogger()); // logs actions
   composed = compose(
     applyMiddleware(...middleware),
