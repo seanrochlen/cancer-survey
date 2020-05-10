@@ -143,6 +143,15 @@ export class Root extends Component {
     e.preventDefault();
     const { submitFormData } = this.props;
 
+    // validation goes here with UI interacting
+    // 1. gender - required
+    // 2. birthDay, birthMonth, birthYear - must have all 3 if one is entered and not required for entry of birthdate
+    // 3. cancers - cancer type required
+    // 4. family - cancers same requirement as cancers
+    // 5. family - id - this is used as the name and is required
+    // 6. family - gender same requirement as gender
+    // 7. family - relationship - required
+
     submitFormData(this.state);
 
     this.setState({ disabled: true });
