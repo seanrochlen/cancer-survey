@@ -40,7 +40,7 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <Provider store={store}>
-        <Root />
+        <Root patientId="patient0" />
       </Provider>
     </Suspense>
   );

@@ -19,9 +19,10 @@ import Name from '../name';
 export class Root extends Component {
   constructor(props) {
     super(props);
+    const { patientId } = props;
 
     this.state = {
-      id: 'patient0',
+      id: patientId,
       firstName: '',
       lastName: '',
       birthDay: '',
@@ -217,10 +218,12 @@ function bindAction(dispatch) {
 
 /**
  * props
+ * @param {number} patientId specified id of the patient
  * @param {function} submitFormData form action for submitting data
  * @param {function} t language translation
  */
 Root.propTypes = {
+  patientId: PropTypes.string.isRequired,
   submitFormData: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
