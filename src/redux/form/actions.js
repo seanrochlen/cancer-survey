@@ -90,16 +90,19 @@ export const submitFormData = (payload) => {
     try {
       axios.post(endpoint, payloadForSubmission)
         .then((res) => {
+          // eslint-disable-next-line no-console
           console.log(res.data);
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(err);
         });
     }
     catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
-
+    // eslint-disable-next-line no-console
     console.log('payload: ', payload);
 
     dispatch({ type: 'SUBMIT_FORM_DATA', payload: payload });

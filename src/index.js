@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 import combinedReducers from './redux';
 import Root from './components/root';
 import './assets/styles/index.scss';
-import * as serviceWorker from './serviceWorker';
 import './i18n';
 
 const middleware = [thunk]; // dispatch() functions
@@ -50,5 +49,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('root'),
 );
-
-serviceWorker.unregister();
