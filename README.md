@@ -1,4 +1,4 @@
-Cancer Study
+Cancer Survey
 =========================
 
 This is a study to determine a user's cancer probability. The testing criteria at the bottom outlines how this study is conducted.
