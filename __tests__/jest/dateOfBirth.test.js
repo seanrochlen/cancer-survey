@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import DateOfBirth from '../components/dateOfBirth';
+import DateOfBirth from '../../src/components/dateOfBirth';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),

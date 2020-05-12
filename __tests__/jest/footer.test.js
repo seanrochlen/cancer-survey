@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Footer from '../components/footer';
+import Footer from '../../src/components/footer';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),

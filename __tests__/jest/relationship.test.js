@@ -1,12 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Relationship from '../components/relationship';
+import Relationship from '../../src/components/relationship';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),
 }));
 
 const props = {
+  family: [{ id: '12345', name: '', age: '', motherId: '', fatherId: '', gender: '', relationship: '', cancers: [] }],
   familyId: 0,
   handleChange: jest.fn(),
   person: { id: 12345, relationship: 'father' },

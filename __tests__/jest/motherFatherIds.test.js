@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import MotherFatherIds from '../components/motherFatherIds';
+import MotherFatherIds from '../../src/components/motherFatherIds';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import CancerEntries from '../components/cancerEntries';
+import CancerEntries from '../../src/components/cancerEntries';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),

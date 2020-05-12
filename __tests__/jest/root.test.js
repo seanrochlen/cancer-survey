@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Root } from '../components/root';
+import { Root } from '../../src/components/root';
 
 let wrapper;
 let spy;
@@ -8,7 +8,7 @@ let spy;
 describe('<Root>', () => {
   beforeEach(() => {
     spy = jest.spyOn(Root.prototype, 'render');
-    wrapper = shallow(<Root t={() => {}} />);
+    wrapper = shallow(<Root patientId="patient0" submitFormData={() => {}} t={() => {}} />);
   });
   afterEach(() => {
     spy.mockReset();

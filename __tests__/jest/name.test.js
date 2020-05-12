@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Name from '../components/name';
+import Name from '../../src/components/name';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key) => key }),
