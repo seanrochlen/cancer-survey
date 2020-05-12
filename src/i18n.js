@@ -7,11 +7,11 @@ import translationES from './assets/locales/es/translation.json';
 
 const resources = {
   en: {
-    translation: translationEN
+    translation: translationEN,
   },
   es: {
-    translation: translationES
-  }
+    translation: translationES,
+  },
 };
 
 i18n
@@ -20,7 +20,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "en",
+    lng: 'en',
     fallbackLng: 'en',
     debug: true,
     interpolation: {
